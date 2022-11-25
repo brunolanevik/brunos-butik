@@ -1,16 +1,5 @@
 <script setup>
-import {useFetch} from "nuxt/app";
 
-const route = useRoute()
-const test = [{id: 1}]
-// When accessing /posts/1, route.params.id will be 1
-
-let product;
-const { pending, data: products } = useLazyFetch('https://global.occtoo.com/iveo/iveoApp/v1/productwithcotton')
-watch(products, (loadedProducts) => {
-  console.log(loadedProducts)
-  product = loadedProducts.results.filter(product => product.id === route.params.id)[0]
-})
 </script>
 <template>
   <div>
@@ -38,4 +27,22 @@ watch(products, (loadedProducts) => {
     </div>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      product: {},
+      pending: true
+    }
+  },
+  mounted() {
+    $fetch('https://global.occtoo.com/iveo/iveoApp/v1/productwithcotton').then((products) => {
+      this.product = products.results.filter(product => product.id === useRoute().params.id)[0];
+      this.pending = false
+    })
+
+  }
+}
+</script>
+
 
