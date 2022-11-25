@@ -1,6 +1,6 @@
 <template>
   <div >
-    <div v-if="pending" class="flex">
+    <div v-if="pending" class="flex gap-5 flex-wrap justify-around">
       <loading-product></loading-product>
       <loading-product></loading-product>
       <loading-product></loading-product>
