@@ -40,7 +40,6 @@ export default {
       this.product = products.results.filter(product => product.id === useRoute().params.id)[0];
       this.pending = false
     })
-
   }
 }
 </script>
